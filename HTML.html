@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página oficial del Aki-Verse.">
+    <meta name="author" content="Guillermo Ortega">
+    <meta name="keywords" content="Aki-Verse, Guillermo Ortega">
+    <style>
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #26b970;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+    }
+    nav {
+        background-color: #d4d4d4;
+        color: white;
+        padding: 10px 0;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    nav ul li {
+        margin: 0 15px;
+    }
+    nav ul li a {
+        color: black;
+        text-decoration: none;
+    }
+    nav ul li a:hover {
+        text-decoration: underline;
+    }
+    section {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+    }
+    article {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    article h2 {
+        color: #26b970;
+    }
+    article time {
+        display: block;
+        font-size: 0.9em;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    article p {
+        margin: 10px 0;
+    }
+    article footer {
+        font-size: 0.8em;
+        color: #999;
+        margin-top: 10px;
+    }
+    aside {
+        background-color: #f4f4f4;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+    aside address {
+        font-style: normal;
+        margin: 0;
+    }
+    #foter {
+        background-color: #26b970;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+    }
+    #foter p {
+        margin: 0;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 10px 0;
+    }
+    @media (max-width: 600px) {
+        nav ul {
+            flex-direction: column;
+            align-items: center;
+        }
+        nav ul li {
+            margin: 10px 0;
+        }
+    }
+    @media (max-width: 400px) {
+        body {
+            font-size: 14px;
+        }
+        header, nav, section, aside, #foter {
+            padding: 10px;
+        }
+        article {
+            padding: 10px;
+        }
+    }
+    @media (min-width: 1200px) {
+        body {
+            font-size: 18px;
+        }
+        header, nav, section, aside, #foter {
+            padding: 20px;
+        }
+        article {
+            padding: 20px;
+        }
+    }
+    @media (min-width: 1600px) {
+        body {
+            font-size: 20px;
+        }
+        header, nav, section, aside, #foter {
+            padding: 30px;
+        }
+        article {
+            padding: 30px;
+        }
+    }
+    aside {
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 150px;
+        height: 120%;
+        overflow-y: auto;
+        background-color: #09bb53;
+        padding: 20px;
+    }
+    aside li {
+        margin: 10px 0;
+    }
+    aside li a {
+        color: black;
+        text-decoration: none;
+    }
+    aside li a:hover {
+        text-decoration: underline;
+    }
+    @media (max-width: 800px) {
+        aside {
+            position: static;
+            width: 100%;
+            height: auto;
+        }
+    }
+    </style>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const articles = document.querySelectorAll("article");
+        articles.forEach(article => {
+            const time = article.querySelector("time");
+            if (time) {
+                const date = new Date(time.getAttribute("datetime"));
+                time.textContent = `Publicado: ${date.toLocaleDateString("es-ES")}`;
+            }
+        });
+    });
+    // Animación de aparición suave para los artículos
+    document.addEventListener("DOMContentLoaded", function() {
+        const articles = document.querySelectorAll("article");
+        articles.forEach((article, i) => {
+            article.style.opacity = 0;
+            article.style.transform = "translateY(30px)";
+            setTimeout(() => {
+                article.style.transition = "opacity 0.8s, transform 0.8s";
+                article.style.opacity = 1;
+                article.style.transform = "translateY(0)";
+            }, 200 * i);
+        });
+    });
+
+    // Animación de resalte en hover para los enlaces del nav
+    document.querySelectorAll("nav ul li a").forEach(link => {
+        link.addEventListener("mouseenter", () => {
+            link.style.transition = "color 0.3s, background 0.3s";
+            link.style.background = "#26b970";
+            link.style.color = "white";
+            link.style.borderRadius = "5px";
+            link.style.padding = "2px 8px";
+        });
+        link.addEventListener("mouseleave", () => {
+            link.style.background = "none";
+            link.style.color = "black";
+            link.style.padding = "0";
+        });
+    });
+
+    // Animación de aside al hacer scroll (solo en desktop)
+    if (window.innerWidth > 800) {
+        const aside = document.querySelector("aside");
+        aside.style.transition = "box-shadow 0.4s";
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                aside.style.boxShadow = "0 4px 16px rgba(38,185,112,0.3)";
+            } else {
+                aside.style.boxShadow = "none";
+            }
+        });
+    }
+    </script>
+    <title> Mi Blog </title>
+</head>
+<body>
+    <header>
+    <h1> Mi Blog </h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio </a></li>
+            <li><a href="PDP.html">Pecados del Pasado </a></li>
+            <li><a href="HDE.html">Hijos del Elemento </a></li>
+            <li><a href="G5R.html">La Guerra de los 5 Reinos </a></li>
+            <li><a href="SOUL.html">Soul </a></li>
+            <li><a href="MADLC.html">Más Allá de lo Conocido </a></li>
+            <li><a href="AV.html">Aki-Verse </a></li>
+            <li><a href="LEDONIA.html">Academia Ledonia </a></li>
+            <li><a href="PP.html">Proyecto Prometeo </a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <article>
+        <h2> ¡Bienvenido a mi rincón! </h2>
+        <time datetime = "06-06-2025"> Publicado: 6 de Junio del 2025 </time>
+        <p>Desde 2023 me he dedicado a escribir de manera autodidacta, llegando a terminar toda una saga de más de 20 novelas. Este blog no es solo
+            un catálogo de mis obras, es el lugar donde habito cuando no estoy escribiendo, o mejor dicho, cuando estoy escribiendo incluso sin teclado.
+        </p>
+        <p>
+            Aqui vas a encontrar fragmentos de mundos, unos con nombres, otros sin ellos, de ideas que florecen en la madrugada, y pedazos de mí disfrazados
+            de personajes. Porque sí, soy escritor, pero también soy lector y un soñador, también a veces víctima de mis propias tramas.
+        </p>
+            <footer>
+                <small> <p> Comentarios (0) </p> </small>
+            </footer>
+        </article>
+        <article>
+        <h2> ¿Por qué escribo? </h2>
+        <time datetime = "06-06-2025"> Publicado: 6 de Junio del 2025 </time>
+        <p>
+            A veces, no es suficiente con leer, a veces las historias que nos cuentan no son suficientes. Escribo porque hay emociones que no caben en una
+            conversación y pensamientos que gritan tan pero tan fuerte que solo el papel puede contenerlos.
+        </p>
+        <p>
+            Me interesa explorar lo que hacen los humanos, lo que rompe y lo que mueve a uno. Me obsesionan los sacrificios, el poder, la redención, el odio
+            y la fragilidad que todos hemos llegado a esconder. Mis novelas no las hago con la intención de escapar de la realidad, sino de verla desde otro ángulo.
+        </p>
+            <footer>
+                <small> <p> Comentarios (0) </p> </small>
+            </footer>
+        </article>
+        <article>
+        <h2> Un vistazo a mis historias </h2>
+        <time datetime = "06-06-2025"> Publicado: 6 de Junio del 2025 </time>
+        <p>
+            ¡Mis historias son muy variadas! Desde reinos en guerra, academias de magia, ciudades futuristicas... Y entre ellas están:
+            <ul>
+                <li> Pecados del Pasado </li>
+                <li> Hijos del Elemento </li>
+                <li> La Guerra de los 5 Reinos </li>
+                <li> Soul </li>
+                <li> Más Allá de lo Conocido </li>
+                <li> Aki-Verse </li>
+                <li> Academia Ledonia </li>
+                <li> Proyecto Prometeo </li>
+            </ul>
+        </p>
+            <footer>
+                <small> <p> Comentarios (0)</p> </small>
+            </footer>
+        </article>
+        <article>
+        <h2> Mi mundo en imágenes </h2>
+        <time datetime = "06-06-2025"> Publicado: 6 de Junio del 2025 </time>
+        <img src="images/6Akizukis.png" alt="Aki-Verse">
+        <p>
+            ¡Que extraño! Estas fueron las primeras imágenes de los protagonistas de cada una de mis historias. Algunas se quedaron como eran, otros tuvieron
+            cambios pequeños, ¡Y otros tuvieron cambios tan grandes que ya no se parecen en nada!
+        </p>
+        <img src="images/AdeleideRoyal.png" alt="Adeleide-G5R">
+        <p>
+            Esta es Adeleide, la co-protagonista de "La Guerra de los 5 Reinos". En realidad, es un coloreo de un dibujo de mi novia, ¡Quien de hecho, es la creadora de varios de 
+            los personajes de mis historias! Ella es una gran artista y siempre me sorprende con sus dibujos.
+        <p>
+        <img src="images/control devil.png" alt="Aki-Verse">
+        <p>
+            Y si, yo también dibujo, aunque no soy tan bueno como ella. Este es un dibujo de Makima, un personaje de Chainsaw Man. No tiene nada que ver con mis historias,
+            pero es un ejemplo de lo que hago. (Y también porque es mi personaje favorito de la serie).
+        </p>
+        </article>
+        <article>
+        <h2> Lo que estoy escribiendo ahora mismo </h2>
+        <time datetime = "06-06-2025"> Publicado: 6 de Junio del 2025 </time>
+        <p>
+            En estos días mi mente está sumergida en todo el caos del Instituto 77. Lev Volkov avanza entre los horrores cientificos, y mientras él busca a su hermana,
+            yo busco respuestas sobre lo que significa perder la humanidad.
+        </p>
+        <p>
+            También estoy dandole forma al siguiente volumen de Academia Ledonia, si bien ya he terminado de escribir su saga, ¡Aún tengo preparado una edición especial! Con 
+            escenas extra, más interacciones, personajes nuevos y un final alternativo que estoy seguro que te va a encantar. Así que si, ¡Yoshino volverá!
+        </p>
+        </article>
+        <article>
+        <h2> ¿Qué es lo que me inspira? </h2>
+        <time datetime = "06-06-2025"> Publicado: 6 de Junio del 2025 </time>
+        <p>
+            Mis historias no se alimentan solas, necesitan de mucha inspiración. Algunas de las maneras más rápidas para inspirarme son:
+            <ul>
+                <li> Escuchar música, especialmente bandas sonoras de películas y videojuegos. (Mi música favorita es la de Mon Laferte y Kevin Kaarl) </li>
+                <li> Leer libros, especialmente fantasía y ciencia ficción. (Soy gran fanatico de la saga de Harry Potter) </li>
+                <li> Ver películas y series, especialmente de acción y aventura. (Mi película favorita es Cars, en cuanto a series es Squid Game) </li>
+                <li> Jugar videojuegos, especialmente RPGs y juegos de mundo abierto. (Mi juego favorito es Undertale) </li>
+                <li> Y claro, las personas que me rodean. Dandome ideas, consejos, y su apoyo diario. </li>
+        </article>
+        <article>
+        <h2> ¿Sabías qué...? </h2>
+        <time datetime = "06-06-2025"> Publicado: 6 de Junio del 2025 </time>
+        <p>
+            <ul>
+                <li> HATE, el antagonista principal del Aki-Verse, fue encerrado por Yahveh en su propio universo. Y aún así, su poder es tan grande que puede influenciar 
+                    a otras personas desde lejos. </li>
+                <li> Yoshino Takanato, en realidad, no iba a ser una heroína. Solo una niña con problemas de insuficiencia, pero al final, terminó heredando el manto de Sunrise. </li>
+                <li> El Proyecto Prometeo es un conjunto de todos los proyectos del Instituto 77. Entre ellos, el proyecto Icaro, que planea convertir a un humano en un ángel. </li>
+                <li> Todas mis sagas tienen al menos una línea de texto que las conecta con las demás. </li>
+            </ul>
+        </article>
+        <article>
+        <h2> ¿Te quedas un rato más? </h2>
+        <time datetime = "06-06-2025"> Publicado: 6 de Junio del 2025 </time>
+        <p>
+            Si te ha gustado lo que has leído, te invito a quedarte un rato más. Aquí siempre hay algo nuevo por descubrir, ya sea un nuevo capítulo, una nueva historia o simplemente
+            un nuevo pensamiento que quiero compartir contigo. Puedes escribirme, contarme como te la pasaste leyendo mis historias, ¡Incluso puedes sugerirme nuevas ideas! Y claro, en
+            caso de que quieras hablar de algo más, siempre estoy disponible para una buena conversación.
+        </p>
+        </article>
+    </section>
+
+    <aside> 
+        Mis páginas web:
+        <address>
+            <li><a href="https://www.wattpad.com/user/TheGreenGuy2">Wattpad</a></li>
+            <li><a href="https://booknet.com/es/guillermo-ortega-u10956154">Booknet</a></li>
+            <li><a href="https://getinkspired.com/es/u/guillermo-ortega-915656/">Inkspired</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61554139214802">Facebook</a></li>
+        </address>
+        Acerca de:
+            <li><a href="acerca.html">Acerca de mí</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+    </aside>
+    <footer id = "foter">
+        <p>&copy; 2023 - 2025 Guillermo Ortega. Todos los derechos reservados.</p>
+        <p>Contacto: <a href="mailto:@guillermodejesusortegaflores2d@gmail.com">
+    </footer>
+</body>
+</html>
